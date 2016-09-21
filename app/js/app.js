@@ -39,7 +39,7 @@ function insertHTML(data) {
     //启动导航插件
     $("#affix").affix({
         offset: {
-            top: 410
+            top: 210
         }
     });
 }
