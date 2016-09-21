@@ -8,6 +8,7 @@
  * 根据URL获取参数，兼容HASH
  * q地址栏参数，val如果没有对应参数返回的默认值，url 指定的地址链接-如果没有传入则取当前地址
 */
+(function(){
 function urlParam (q, val, url) {
   url =!url? document.location + '':'';
   if(val===undefined){
@@ -22,8 +23,8 @@ function urlParam (q, val, url) {
 	  return val;//没找到返回默认值或空串
   }
 };
-//完美判断是否为网址
 function IsURL(strUrl) {
+    //完美判断是否为网址
     var regular = /^\b(((https?|ftp):\/\/)?[-a-z0-9]+(\.[-a-z0-9]+)*\.(?:com|edu|gov|int|mil|net|org|biz|info|name|museum|asia|coop|aero|[a-z][a-z]|((25[0-5])|(2[0-4]\d)|(1\d\d)|([1-9]\d)|\d))\b(\/[-a-z0-9_:\@&?=+,.!\/~%\$]*)?)$/i
     if (regular.test(strUrl)) {
         return true;
@@ -31,18 +32,18 @@ function IsURL(strUrl) {
         return false;
     }
 }
-/**
- * 版本比较 VersionCompare
- * @param {String} currVer 当前版本.
- * @param {String} promoteVer 比较版本.
- * @return {Boolean} false 当前版本小于比较版本返回 true.
- *
- * 使用
- * VersionCompare("6.3","5.2.5"); // false.
- * VersionCompare("6.1", "6.1"); // false.
- * VersionCompare("6.1.5", "6.2"); // true.
- */
 function versionCompare(currVer, promoteVer) {
+    /**
+     * 版本比较 VersionCompare
+     * @param {String} currVer 当前版本.
+     * @param {String} promoteVer 比较版本.
+     * @return {Boolean} false 当前版本小于比较版本返回 true.
+     *
+     * 使用
+     * VersionCompare("6.3","5.2.5"); // false.
+     * VersionCompare("6.1", "6.1"); // false.
+     * VersionCompare("6.1.5", "6.2"); // true.
+     */
     currVer = currVer || "0.0.0";
     promoteVer = promoteVer || "0.0.0";
     if (currVer == promoteVer) return false;
@@ -96,11 +97,12 @@ navigator.isTouchScreen=function(){
 function isNumber(v){
 	return true;
 }
-/**
- * 金额大写转换函数
- * 输入要转换的金额，必须为数值型
-*/
+
 function upperMoney(tranvalue) {
+    /**
+     * 金额大写转换函数
+     * 输入要转换的金额，必须为数值型
+     */
 	if(isNumber==false){
 		throw new Error('upperMoney参数需为有效数值');
 	}
@@ -170,17 +172,17 @@ function upperMoney(tranvalue) {
     }
     return str;
 }
- /**
-    *格式化数字，格式化金额： 
-    参数说明：
-    * number：要格式化的数字
-    * decimals：保留几位小数
-    * dec_point：小数点符号
-    * thousands_sep：千分位符号
-    * var num=formatMoney(1234567.089, 2, ".", ",");//1,234,567.09
-*/
+
 function formatMoney(number, decimals, dec_point, thousands_sep) {
-   
+    /**
+     *格式化数字，格式化金额：
+     参数说明：
+     * number：要格式化的数字
+     * decimals：保留几位小数
+     * dec_point：小数点符号
+     * thousands_sep：千分位符号
+     * var num=formatMoney(1234567.089, 2, ".", ",");//1,234,567.09
+     */
     number = (number + '').replace(/[^0-9+-Ee.]/g, '');
     var n = !isFinite(+number) ? 0 : +number,
         prec = !isFinite(+decimals) ? 0 : Math.abs(decimals),
@@ -205,9 +207,8 @@ function formatMoney(number, decimals, dec_point, thousands_sep) {
     return s.join(dec);
 }
 
-//设置cookie值
-
 function setCookie(name, value, Hours) {
+    //设置cookie值
     var d = new Date();
     var offset = 8;
     var utc = d.getTime() + (d.getTimezoneOffset() * 60000);
@@ -216,21 +217,22 @@ function setCookie(name, value, Hours) {
     exp.setTime(exp.getTime() + Hours * 60 * 60 * 1000);
     document.cookie = name + "=" + escape(value) + ";path=/;expires=" + exp.toGMTString() + ";domain=360doc.com;"
 }
-//获取cookie值
 
 function getCookie(name) {
+    //获取cookie值
     var arr = document.cookie.match(new RegExp("(^| )" + name + "=([^;]*)(;|$)"));
     if (arr != null) return unescape(arr[2]);
     return null
 }
-//随机数时间戳
 
 function uniqueId(){
+    //随机数时间戳
     var a=Math.random,b=parseInt;
     return Number(new Date()).toString()+b(10*a())+b(10*a())+b(10*a());
 }
-//确认是否键盘有效输入值
+
 function checkKey(iKey){
+    //确认是否键盘有效输入值
     if(iKey == 32 || iKey == 229){return true;}/*空格和异常*/
     if(iKey>47 && iKey < 58){return true;}/*数字*/
     if(iKey>64 && iKey < 91){return true;}/*字母*/
@@ -241,9 +243,8 @@ function checkKey(iKey){
     return false;
 }
 
-//判断是否为数字类型
-
 function isDigit(value) {
+    //判断是否为数字类型
     var patrn = /^[0-9]*$/;
     if (patrn.exec(value) == null || value == "") {
         return false
@@ -251,3 +252,21 @@ function isDigit(value) {
         return true
     }
 }
+    return {
+        urlParam:urlParam,
+        IsURL:IsURL,
+        upperMoney:upperMoney,
+        formatMoney:formatMoney,
+        setCookie:setCookie,
+        getCookie:getCookie,
+        uniqueId:uniqueId,
+        checkKey:checkKey,
+        isDigit:isDigit
+       /*
+        isMobile:navigator.isMobile,
+        isAppleMobile:navigator.isAppleMobile,
+        isAndroid:navigator.isAndroid,
+        isTouchScreen: navigator.isTouchScreen,
+        */
+    }
+})
