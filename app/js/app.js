@@ -21,7 +21,7 @@ function insertHTML(data) {
         var textareaHeight= lineHeight*(funString.match(/\n/ig).length+1)+20;
         H_lis+='<li><a href="#'+id+'">'+d+'</a></li>';
         H_section+='<div><h1 id="'+id+'">'+d+'</h1><textarea style="height: '+textareaHeight+'px" class="form-control fun_area">'+funString+'</textarea>' +
-            '<textarea class="form-control" id="T'+id+'" style="height: 50px; margin: 5px 0"></textarea><button class="btn btn-sm btn-primary">Run</button>'+
+            '<textarea placeholder="一些可以运行的JS,然后点Run，看效果" class="form-control" id="T'+id+'" style="height: 50px; margin: 5px 0"></textarea><button class="btn btn-sm btn-primary">Run</button>'+
             '<hr></div>';
     }
     //插入侧边导航
