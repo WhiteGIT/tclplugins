@@ -103,7 +103,7 @@ function upperMoney(tranvalue) {
      * 金额大写转换函数
      * 输入要转换的金额，必须为数值型
      */
-	if(isNumber==false){
+	if(isNaN(tranvalue)==true){
 		throw new Error('upperMoney参数需为有效数值');
 	}
 	//拆分整数与小数
